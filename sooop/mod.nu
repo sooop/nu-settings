@@ -1,3 +1,4 @@
+module utils {
 
 def words [] {
 	$in | split column -c ' '
@@ -7,11 +8,22 @@ def cells [] {
 	$in | lines | split column -c ' '
 }
 
-def 'to posix' [] {
+def "to posix" [path: string] {
 	$in | path expand | into string | str replace -a '\\' '/'
 }
 
-def pipout [-r] {
+export def first-word [
+  --skip-empty(-n)
+  ] {
+  let res = $in | split column --regex '\s+' | get column1
+  if $skip_empty {
+    return ($res | filter {|el| $el !~ '^\s*$'})
+  } else {
+    return $res
+  }
+}
+
+export def pipout [-r] {
 	let xs = (pip list --outdated (if ($r) { "--not-required" } else { "" }) |
 			cells)
 	try {
@@ -21,25 +33,29 @@ def pipout [-r] {
 	}
 }
 
-def 'add-safe' [] {
+export def "git add-safe" [] {
 	if $in == null {
-		let d = ($env.PWD | to posix)
+		let d = ($env.PWD | to posix $in)
 		git config --global --add safe.directory $"($d)"
 		return $d
 	} else {
-		let d = ($in | to posix)
+		let d = ($in | to posix $in)
 		git config --global --add safe.directory $"($d)"
 		return $d
 	}
 }
 
-def json_pp [] {
+export def json_pp [] {
 	(python -mjson.tool $in) | bat -ljson
 }
 
-def cmds [] {
+export def "edit cmds" [] {
 	vim d:\tools\nu-settings\cmds.nu
 }
 
-alias dir = ls -l
-alias cls = clear
+} # end of module utils
+
+export use utils *
+export use externs *
+export alias dir = ls -l
+export alias cls = clear

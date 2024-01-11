@@ -1,5 +1,0 @@
-Python.ArchiveFile="C:\Python\Python311\python.exe" "%L" %*
-Python.CompiledFile="C:\Python\Python311\python.exe" "%L" %*
-Python.File="C:\Python\Python311\python.exe" "%L" %*
-Python.NoConArchiveFile="C:\Python\Python311\python.exe" "%L" %*
-Python.NoConFile="C:\Python\Python311\python.exe" "%L" %*
