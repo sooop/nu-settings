@@ -23,6 +23,7 @@ export extern pip [
 export extern "pip install" [
   --requirement(-r): string
   --constraint(-c): string
+  --force-reinstall
   --no-deps
   --pre
   --editable(-e): string
@@ -86,6 +87,7 @@ export extern "pip install" [
   --no-python-version-warning
   --use-feature: string
   --use-deprecated: string
+  ...packages: string
 ]
 
 export extern "pip list" [

@@ -55,7 +55,8 @@ export def "edit cmds" [] {
 
 } # end of module utils
 
-export use utils *
-export use externs *
 export alias dir = ls -l
 export alias cls = clear
+
+export use utils/ *
+export use externs/ *

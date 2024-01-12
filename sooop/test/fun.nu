@@ -1,4 +1,4 @@
-export extern pdf2img [
+export extern funfun [
   --density (-d): int
   --quality (-q): int=100
   --ext: string='jpg'
