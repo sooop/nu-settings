@@ -59,4 +59,4 @@ export alias dir = ls -l
 export alias cls = clear
 
 export use utils/ *
-export use externs
+export use externs *
